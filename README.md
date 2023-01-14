@@ -35,7 +35,18 @@ Interexchange Moduleがどのように機能するかをまとめる.
 
 火星から金星にTokenを交換する場合
 
+- 金星チェーンはIBC `Voucher` tokenを持ち、`ibc/B5CB286...A7B21307F`のようなDenomを持つ
+- VoucherTokenのibc/移行の文字列はIBCを使ってTransferされたTOkenのDenom traceのハッシュ値
 
+ブロックチェーンのAPIを利用することで、Denom traceを上記のハッシュ値から取得できる. Denom traceは`base_denom`と`path`から構成される.
+
+今回の場合、`base_denom`は`marscoin`、`path`はトークンがやりとりされたチャンネルとポートのペア
+
+また、single-hop transferの場合、`path`は`transfer/channel-0`となる
+
+:::note info
+`ibc/Venus/marscoin`は同じオーダーブックを用いて売り戻すことはできない。もし交換を「リバース」したい場合は、`ibc/Venus/marscoin`から`marscoin`への新しいオーダーブックを作成する必要がある
+:::
 
 
 ## Create the Blockchain
