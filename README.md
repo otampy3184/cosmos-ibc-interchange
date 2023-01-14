@@ -51,6 +51,8 @@ Interexchange Moduleがどのように機能するかをまとめる.
 
 ## Create the Blockchain
 
+IgniteCLIでBlockchainの下地を作成する
+
 ```:
 % ignite scaffold chain interchange --no-module
 ```
@@ -61,9 +63,13 @@ Interexchange Moduleがどのように機能するかをまとめる.
 
 ## Create the module
 
+新規のModuleとして`dex`を作成する
+
 ```:
 % ignite scaffold module dex --ibc --ordering unordered --dep bank
 ```
+
+## OrderBookのBuyとSellのためのCRUDロジックを作成
 
 ```;
 % ignite scaffold map sell-order-book amountDenom priceDenom --no-message --module dex
