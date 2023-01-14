@@ -64,3 +64,8 @@ Interexchange Moduleがどのように機能するかをまとめる.
 ```:
 % ignite scaffold module dex --ibc --ordering unordered --dep bank
 ```
+
+```;
+% ignite scaffold map sell-order-book amountDenom priceDenom --no-message --module dex
+% ignite scaffold map buy-order-book amountDenom priceDenom --no-message --module dex
+```
