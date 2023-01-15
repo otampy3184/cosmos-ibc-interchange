@@ -75,3 +75,11 @@ IgniteCLIでBlockchainの下地を作成する
 % ignite scaffold map sell-order-book amountDenom priceDenom --no-message --module dex
 % ignite scaffold map buy-order-book amountDenom priceDenom --no-message --module dex
 ```
+
+## Packetを作成
+
+```:
+% ignite scaffold packet create-pair sourceDenom targetDenom --module dex
+% ignite scaffold packet sell-order amountDenom amount:int priceDenom price:int --ack remainingAmount:int,gain:int --module dex
+% ignite scaffold packet buy-order amountDenom amount:int priceDenom price:int --ack remainingAmount:int,purchase:int --module dex
+```
