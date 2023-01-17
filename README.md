@@ -84,3 +84,9 @@ IgniteCLIでBlockchainの下地を作成する
 % ignite scaffold packet buy-order amountDenom amount:int priceDenom price:int --ack remainingAmount:int,purchase:int --module dex
 ```
 
+## Order cancel用のメッセージ作成
+
+```:
+% ignite scaffold message cancel-sell-order port channel amountDenom priceDenom orderID:int --desc "Cancel a sell order" --module dex
+% ignite scaffold message cancel-buy-order port channel amountDenom priceDenom orderID:int --desc "Cancel a buy order" --module dex
+```
