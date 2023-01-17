@@ -90,3 +90,9 @@ IgniteCLIでBlockchainの下地を作成する
 % ignite scaffold message cancel-sell-order port channel amountDenom priceDenom orderID:int --desc "Cancel a sell order" --module dex
 % ignite scaffold message cancel-buy-order port channel amountDenom priceDenom orderID:int --desc "Cancel a buy order" --module dex
 ```
+
+## Denomトレース用のマッピング作成
+
+```:
+% ignite scaffold map denom-trace port channel origin --no-message --module dex
+```
