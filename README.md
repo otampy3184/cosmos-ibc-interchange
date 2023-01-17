@@ -96,3 +96,61 @@ IgniteCLIでBlockchainの下地を作成する
 ```:
 % ignite scaffold map denom-trace port channel origin --no-message --module dex
 ```
+
+## テスト準備
+
+動作確認用に、それぞれ指定のトークンを持つ用にmars.ymlとvenus.ymlファイルを用意する
+
+```yml:
+    # venus.yml
+    accounts:
+    - name: alice
+        coins: ["1000token", "1000000000stake", "1000venuscoin"]
+    - name: bob
+        coins: ["500token", "1000venuscoin", "100000000stake"]
+    validator:
+    name: alice
+    staked: "100000000stake"
+    faucet:
+    host: ":4501"
+    name: bob
+    coins: ["5token", "100000stake"]
+    host:
+    rpc: ":26659"
+    p2p: ":26658"
+    prof: ":6061"
+    grpc: ":9092"
+    grpc-web: ":9093"
+    api: ":1318"
+    genesis:
+    chain_id: "venus"
+    init:
+    home: "$HOME/.venus"
+```
+
+```yml:
+    # venus.yml
+    accounts:
+    - name: alice
+        coins: ["1000token", "1000000000stake", "1000venuscoin"]
+    - name: bob
+        coins: ["500token", "1000venuscoin", "100000000stake"]
+    validator:
+    name: alice
+    staked: "100000000stake"
+    faucet:
+    host: ":4501"
+    name: bob
+    coins: ["5token", "100000stake"]
+    host:
+    rpc: ":26659"
+    p2p: ":26658"
+    prof: ":6061"
+    grpc: ":9092"
+    grpc-web: ":9093"
+    api: ":1318"
+    genesis:
+    chain_id: "venus"
+    init:
+    home: "$HOME/.venus"
+```
