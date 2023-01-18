@@ -154,3 +154,59 @@ IgniteCLIでBlockchainの下地を作成する
     init:
     home: "$HOME/.venus"
 ```
+
+## 利用コマンドについて
+
+Blockchainへの操作として、以下の指示を行うために各種のコマンドを利用する
+
+```:
+ - Create an exchange order book for a token pair between two chains
+ - Send sell orders on source chain
+ - Send buy orders on target chain
+ - Cancel sell or buy orders
+```
+
+交換を開始するためのOrder bookを作るためのコマンド
+
+```:
+# Create pair broadcasted to the source blockchain
+# interchanged tx dex send-create-pair [src-port] [src-channel] [sourceDenom] [targetDenom]
+# interchanged tx dex send-create-pair dex channel-0 marscoin venuscoin
+```
+
+交換するトークンのペアを表現するために、*sourceDenom*と*targetDenom*の二つを指定しているのがわかる
+
+また、order bookを作成すると、SouceBlockchainとTragetBlockchainの双方のStateに影響を与える
+
+SouceBlockchainの場合(現時点では空の状態)
+
+```:
+# Created a sell order book on the source blockchain
+SellOrderBook:
+- amountDenom: marscoin
+  creator: ""
+  index: dex-channel-0-marscoin-venuscoin
+  orderIDTrack: 0
+  orders: []
+  priceDenom: venuscoin
+```
+
+TargetBlockchainの場合(現時点では空の状態)
+
+```:
+# Created a buy order book on the target blockchain
+BuyOrderBook:
+- amountDenom: marscoin
+  creator: ""
+  index: dex-channel-0-marscoin-venuscoin
+  orderIDTrack: 1
+  orders: []
+  priceDenom: venuscoin
+```
+
+また、上記のState変更はユーザーが打ち込んだ`createPair`トランザクションを起点に作成される
+
+1. ユーザーが`createPair`トランザクションを作成により、PacketがTragetBlockchainに送られる
+2. Packetを受け取ったTragetBlockchainは内部のStateにBuyOrderBookを作成し、Packet acknowledgementをSourceBlockchainに送り返す
+3. SourceBlockchainがAckを受け取り、内部のStateにSellOrderBookを作成する
+
