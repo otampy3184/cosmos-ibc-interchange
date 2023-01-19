@@ -210,3 +210,34 @@ BuyOrderBook:
 2. Packetを受け取ったTragetBlockchainは内部のStateにBuyOrderBookを作成し、Packet acknowledgementをSourceBlockchainに送り返す
 3. SourceBlockchainがAckを受け取り、内部のStateにSellOrderBookを作成する
 
+## Sell Orderの作成
+
+Order bookが作成できた後はSell Orderを作成する
+
+```:
+# Sell order broadcasted to the source blockchain
+# interchanged tx dex send-sell-order [src-port] [src-channel] [amountDenom] [amount] [priceDenom] [price]
+% interchanged tx dex send-sell-order dex channel-0 marscoin 10 venuscoin 15
+```
+
+Source Blockchainに対して、作成したOrderを売りに出すための操作を入力し、Stateが以下のように変化する
+
+```:
+# Source blockchain
+balances:
+- amount: "990" # decreased from 1000
+  denom: marscoin
+SellOrderBook:
+- amountDenom: marscoin
+  creator: ""
+  index: dex-channel-0-marscoin-venuscoin
+  orderIDTrack: 2
+  orders: # a new sell order is created
+  - amount: 10
+    creator: cosmos1v3p3j7c64c4ls32pcjct333e8vqe45gwwa289q
+    id: 0
+    price: 15
+  priceDenom: venuscoin
+```
+
+トークンの残高が1000から990に閉r、Orders内にamount10のOrderが作成されていることがわかる
