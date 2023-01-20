@@ -240,4 +240,4 @@ SellOrderBook:
   priceDenom: venuscoin
 ```
 
-トークンの残高が1000から990に閉r、Orders内にamount10のOrderが作成されていることがわかる
+トークンの残高が1000から990に減り、Orders内にamount10のOrderが作成されていることがわかる
